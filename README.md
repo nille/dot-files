@@ -48,10 +48,13 @@ git config --global core.excludesfile ~/.gitignore_global
 ## Iterm2
 Settings are stored in the folder ./iterm2. Add this to your iterm configuration by way preferences (`cmd+,`) and then "Load preferences from a custom folder or URL".
 
-## Clone this repo
+## Clone this repo and run setup script to create symlinks
 
 ```
-git clone repo ~/.dot-files
+git clone git@github.com:nille/dot-files.git ~/.dot-files
+cd ~/.dot-files/
+chmod +x setup.sh
+./setup.sh
 ```
 
 ## Setup gpgp-agent för SSH authentication

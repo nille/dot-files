@@ -1,0 +1,74 @@
+alias cls="colorls"
+
+# Spotify stuff
+alias ss="spotify status"
+alias sn="spotify next"
+alias sp="spotify previous"
+alias sr="spotify replay"
+
+# Lazy cd up:s
+alias ..="cd ../"
+alias ...="cd ../../"
+alias ....="cd ../../../"
+alias .....="cd ../../../../"
+
+# Finder
+alias finder='open -a 'Finder' .'
+
+# Docker
+alias docker-clean-unused='docker system prune --all --force --volumes'
+alias docker-clean-all='docker stop $(docker container ls -a -q) && docker system prune -a -f --volumes'
+
+# mkdir + cd into it
+mkcdir ()
+{
+    mkdir -p -- "$1" &&
+    cd -P -- "$1"
+}
+
+# SHA512 encrypt a string using docker (since os x, apparently, sucks at this)
+alias sha512encrypt-password="docker run -it --rm centos:7 python -c 'import crypt,getpass; print(crypt.crypt(getpass.getpass(), crypt.mksalt(crypt.METHOD_SHA512)))'"
+
+# Remove all cached GPG keys
+alias clearkeys="rm ~/.gnupg/private-keys-v1.d/*.key"
+
+# Generate a random password and show it in stdout as well as put it in the copy buffer
+alias getpass="openssl rand -base64 20 | pbcopy && pbpaste"
+
+# Get external IP
+alias ipe='curl ipinfo.io/ip'
+
+# A prettier ping interface
+alias ping='prettyping --nolegend'
+
+# Bat is cooler than cat
+alias cat='bat'
+
+# Htop is cooler than top
+alias top='sudo htop'
+
+# Cool people edit files in an IDE
+alias edaliases="/usr/local/bin/code ~/.aliases"
+alias edzshrc="/usr/local/bin/code ~/.zshrc"
+
+# Preview a directory 
+alias preview="fzf --preview 'bat --color \"always\" {}'"
+# Add support for ctrl+o to open selected file in VS Code
+export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
+
+alias scat="socat -d TCP-LISTEN:2375,reuseaddr,fork UNIX:/var/run/docker.sock &"
+alias resource="clear; source ~/.zshrc"
+
+# Get rid of DS_Store stuff
+alias rmdsstore='find . -name '.DS_Store' -type f -delete'
+
+# Pretty git log
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+# Remove all unstaged files and start over
+alias nah="git reset --hard;git clean -df;"
+
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
